@@ -245,8 +245,10 @@
 			console.log("loadWordList text", text);
 			// Split the text into lines
 			const lines = text.split('\r\n');
+			console.log("loadWordList lines", lines);
 			// Parse the header line to get the column indices for the languages
 			headers = lines[0].split(',');
+			console.log("loadWordList headers", headers);
 			langIndex = headers.indexOf(language);
 
 			// Create an array of objects for each word
@@ -277,17 +279,20 @@
 		};
 		// Load the list of categories and populate the dropdown menu
 		const loadCategoryList = async () => {
-			console.log("loadCategoryList 33");
-			const response = await fetch('/categories.json');
+			console.log("loadCategoryList 44");
+			const response = await fetch('./categories.json');
 			console.log("loadCategoryList response", response);
 			const data = await response.json();
 			const categoryNames = data.categories;
+			console.log("loadCategoryList data", data);
+			console.log("loadCategoryList categoryNames", categoryNames);
 			categoryNames.forEach((category) => {
 				const option = document.createElement('option');
 				option.value = category;
 				option.textContent = category;
 				wordsList.appendChild(option);
 			});
+			console.log("loadCategoryList wordsList", wordsList);
 
 			// console.log("loadCategoryList 222");
 			// const response = await fetch('/words');
