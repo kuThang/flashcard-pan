@@ -264,8 +264,10 @@
 			return [words, langIndex];
 		};
 		const loadFlashcard = (index) => {
+			console.log('loadFlashcard');
+			console.log('loadFlashcard words', words);
 			const word = words[index];
-			console.log(word);
+			console.log('loadFlashcard word', word);
 			const imagePath = `./imgs/${currentCategory}/${word.image}.png`;
 			const text = word[Object.keys(word)[langIndex]];
 
@@ -279,12 +281,13 @@
 			const response = await fetch('./words');
 			console.log("loadCategoryList response", response);
 			const text = await response.text();
-			console.log("loadCategoryList text", text);
 			const parser = new DOMParser();
 			const htmlDoc = parser.parseFromString(text, 'text/html');
 			const categoryNames = Array.from(htmlDoc.querySelectorAll('a[href]'))
 				.map((link) => link.getAttribute('href'))
 				.filter((name) => name !== '..' && name !== '.');
+				
+			console.log("loadCategoryList htmlDoc.querySelectorAll('a[href]')", htmlDoc.querySelectorAll('a[href]'));
 			categoryNames.forEach((category) => {
 				const option = document.createElement('option');
 				option.value = category;
