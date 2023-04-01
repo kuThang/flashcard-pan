@@ -244,7 +244,12 @@
 			const text = await response.text();
 			console.log("loadWordList text", text);
 			// Split the text into lines
-			const lines = text.split('\r\n');
+			let lines;
+			if (text.includes('\r\n')){
+				lines = text.split('\r\n');
+			} else {
+				lines = text.split('\n');
+			}
 			console.log("loadWordList lines", lines);
 			// Parse the header line to get the column indices for the languages
 			headers = lines[0].split(',');
@@ -279,7 +284,7 @@
 		};
 		// Load the list of categories and populate the dropdown menu
 		const loadCategoryList = async () => {
-			console.log("loadCategoryList 55");
+			console.log("loadCategoryList 66");
 			const response = await fetch('./categories.json');
 			console.log("loadCategoryList response", response);
 			const data = await response.json();
