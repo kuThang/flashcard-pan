@@ -239,7 +239,7 @@
 
 		const loadWordList = async () => {
 			console.log("loadWordList currentCategory", currentCategory);
-			const response = await fetch(`./words/${currentCategory}/word_list.txt`);
+			const response = await fetch(`/words/${currentCategory}/word_list.txt`);
 			console.log("loadWordList response", response);
 			const text = await response.text();
 			console.log("loadWordList text", text);
@@ -268,7 +268,7 @@
 			console.log('loadFlashcard words', words);
 			const word = words[index];
 			console.log('loadFlashcard word', word);
-			const imagePath = `./imgs/${currentCategory}/${word.image}.png`;
+			const imagePath = `/imgs/${currentCategory}/${word.image}.png`;
 			const text = word[Object.keys(word)[langIndex]];
 
 			// Set the image source and text content
@@ -278,7 +278,7 @@
 		// Load the list of categories and populate the dropdown menu
 		const loadCategoryList = async () => {
 			console.log("loadCategoryList");
-			const response = await fetch('./words');
+			const response = await fetch('/words');
 			console.log("loadCategoryList response", response);
 			const text = await response.text();
 			const parser = new DOMParser();
