@@ -277,24 +277,36 @@
 		};
 		// Load the list of categories and populate the dropdown menu
 		const loadCategoryList = async () => {
-			console.log("loadCategoryList 222");
-			const response = await fetch('/words');
+			console.log("loadCategoryList 33");
+			const response = await fetch('/categories.json');
 			console.log("loadCategoryList response", response);
-			const text = await response.text();
-			const parser = new DOMParser();
-			const htmlDoc = parser.parseFromString(text, 'text/html');
-			const categoryNames = Array.from(htmlDoc.querySelectorAll('a[href]'))
-				.map((link) => link.getAttribute('href'))
-				.filter((name) => name !== '..' && name !== '.');
-				
-			console.log("loadCategoryList htmlDoc.querySelectorAll('a[href]')", htmlDoc.querySelectorAll('a[href]'));
+			const data = await response.json();
+			const categoryNames = data.categories;
 			categoryNames.forEach((category) => {
 				const option = document.createElement('option');
 				option.value = category;
 				option.textContent = category;
 				wordsList.appendChild(option);
 			});
-			console.log("loadCategoryList wordsList", wordsList);
+
+			// console.log("loadCategoryList 222");
+			// const response = await fetch('/words');
+			// console.log("loadCategoryList response", response);
+			// const text = await response.text();
+			// const parser = new DOMParser();
+			// const htmlDoc = parser.parseFromString(text, 'text/html');
+			// const categoryNames = Array.from(htmlDoc.querySelectorAll('a[href]'))
+			// 	.map((link) => link.getAttribute('href'))
+			// 	.filter((name) => name !== '..' && name !== '.');
+				
+			// console.log("loadCategoryList htmlDoc.querySelectorAll('a[href]')", htmlDoc.querySelectorAll('a[href]'));
+			// categoryNames.forEach((category) => {
+			// 	const option = document.createElement('option');
+			// 	option.value = category;
+			// 	option.textContent = category;
+			// 	wordsList.appendChild(option);
+			// });
+			// console.log("loadCategoryList wordsList", wordsList);
 		};
 
 		loadCategoryList();
