@@ -238,10 +238,11 @@
 		let currentCategory = 'family';
 
 		const loadWordList = async () => {
-			console.log('currentCategory', currentCategory);
+			console.log("loadWordList currentCategory", currentCategory);
 			const response = await fetch(`./words/${currentCategory}/word_list.txt`);
+			console.log("loadWordList response", response);
 			const text = await response.text();
-
+			console.log("loadWordList text", text);
 			// Split the text into lines
 			const lines = text.split('\r\n');
 			// Parse the header line to get the column indices for the languages
@@ -258,7 +259,7 @@
 					eng: cols[2],
 				});
 			}
-			console.log(words); // Log the contents of the words array
+			console.log("loadWordList words", words);
 			// Return the words array and the language index
 			return [words, langIndex];
 		};
@@ -276,8 +277,9 @@
 		const loadCategoryList = async () => {
 			console.log("loadCategoryList");
 			const response = await fetch('./words');
-			console.log("load category", response);
+			console.log("loadCategoryList response", response);
 			const text = await response.text();
+			console.log("loadCategoryList text", text);
 			const parser = new DOMParser();
 			const htmlDoc = parser.parseFromString(text, 'text/html');
 			const categoryNames = Array.from(htmlDoc.querySelectorAll('a[href]'))
@@ -289,6 +291,7 @@
 				option.textContent = category;
 				wordsList.appendChild(option);
 			});
+			console.log("loadCategoryList wordsList", wordsList);
 		};
 
 		loadCategoryList();
