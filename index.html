@@ -274,7 +274,9 @@
 		};
 		// Load the list of categories and populate the dropdown menu
 		const loadCategoryList = async () => {
-			const response = await fetch('words');
+			console.log("loadCategoryList");
+			const response = await fetch('./words');
+			console.log("load category", response);
 			const text = await response.text();
 			const parser = new DOMParser();
 			const htmlDoc = parser.parseFromString(text, 'text/html');
