@@ -239,7 +239,7 @@
 
 		const loadWordList = async () => {
 			// const response = await fetch('words/family/word_list-.txt');
-			const response = await fetch(`words/${currentCategory}/word_list-.txt`);
+			const response = await fetch(`words/${currentCategory}/word_list.txt`);
 			const text = await response.text();
 
 			// Split the text into lines
